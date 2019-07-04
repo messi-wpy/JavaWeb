@@ -26,7 +26,7 @@
             <td>${u.name }</td>
             <!-- a表签是超链接标签 默认使用get方式提交 -->
             <td><a href="deleteReceiver?id=${u.id }">删除</a></td>
-            <td><a href="deleteReceiver?id=${u.id}&&update=true">修改</a></td>
+            <td><a href="showOne?id=${u.id}">修改</a></td>
         </tr>
 
     </c:forEach>
