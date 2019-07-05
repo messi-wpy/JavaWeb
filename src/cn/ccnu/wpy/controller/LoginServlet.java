@@ -15,13 +15,13 @@ public class LoginServlet extends HttpServlet {
 
         if (userName.equals("wangpengyu")){
             if (password.equals("123456")){
-                request.getRequestDispatcher("welcome.jsp").forward(request,response);
+                response.sendRedirect("receiverServlet?action=showAll");
             }else {
-                response.sendRedirect("login.jsp?error=1");
+                request.getRequestDispatcher("login.jsp?error=1").forward(request,response);
             }
 
         }else {
-            response.sendRedirect("login.jsp?error=2");
+            request.getRequestDispatcher("login.jsp?error=2").forward(request,response);
         }
     }
 
