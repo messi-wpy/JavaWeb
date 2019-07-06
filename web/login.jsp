@@ -13,22 +13,24 @@
 <body>
 
 <div style="border: blue 1px solid ;width :600px">
-    <form action="login" method="post" >
+    <form action="login" method="post">
         <h1 align="center">实训登录界面</h1>
 
-        <table align="center" >
+        <table align="center">
 
             <tr>
                 <td>用户名</td>
-                <td><input type="text" name="username"/><td>
+                <td><input type="text" name="username"/>
+                <td>
             </tr>
             <tr>
                 <td>密码</td>
-                <td><input type="password" name="password"/><td>
+                <td><input type="password" name="password"/>
+                <td>
             </tr>
 
-            <tr >
-                <td colspan="2"  align="center"> <input type="submit"> </td>
+            <tr>
+                <td colspan="2" align="center"><input type="submit"></td>
             </tr>
 
         </table>
@@ -38,12 +40,13 @@
 <script type="text/javascript">
 
     //取出传回来比较
-    var errori ='<%=request.getParameter("error")%>';
-    if(errori==="1"){
+    var errori = '<%=request.getParameter("error")%>';
+    if (errori === "1") {
         alert("密码错误!");
-    }else if (errori==="2"){
+    } else if (errori === "2") {
         alert("用户名不存在");
-    }
+    } else if ((errori === "3"))
+        alert("注册成功")
 
 </script>
 </body>
