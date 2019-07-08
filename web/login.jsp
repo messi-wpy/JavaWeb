@@ -13,7 +13,7 @@
 <body>
 
 <div style="border: blue 1px solid ;width :600px">
-    <form action="login" method="post">
+    <form action="loginOld" method="post">
         <h1 align="center">实训登录界面</h1>
 
         <table align="center">
