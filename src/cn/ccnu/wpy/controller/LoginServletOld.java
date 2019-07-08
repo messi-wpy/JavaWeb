@@ -12,8 +12,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 
-@WebServlet(value = "/login",name = "LoginServlet")
-public class LoginServlet extends HttpServlet {
+@WebServlet(value = "/loginOld",name = "LoginServletOld")
+public class LoginServletOld extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String userName=request.getParameter("username");
         String password=request.getParameter("password");

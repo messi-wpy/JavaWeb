@@ -36,4 +36,20 @@ public class DBHelper {
        }
 
     }
+
+    public static void close(Connection conn,ResultSet rs,PreparedStatement ps){
+        try{
+            if(null != rs){
+                rs.close();
+            }
+            if(null != ps){
+                ps.close();
+            }
+            if(null != conn){
+                conn.close();
+            }
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+    }
 }
