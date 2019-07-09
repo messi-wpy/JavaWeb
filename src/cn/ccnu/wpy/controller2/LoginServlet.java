@@ -75,6 +75,7 @@ public class LoginServlet extends HttpServlet {
             response.getWriter().println(gson.toJson(body));
         }else {
             body.setCode(200);
+            body.setMsg("登录成功");
             body.setBody(user);
             response.getWriter().println(gson.toJson(body));
         }

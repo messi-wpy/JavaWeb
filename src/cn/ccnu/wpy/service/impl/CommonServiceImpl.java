@@ -41,4 +41,5 @@ public class CommonServiceImpl<T>implements ICommonService<T> {
     public T showOne(int id) throws Exception {
         return dao.showOne(id);
     }
+
 }
