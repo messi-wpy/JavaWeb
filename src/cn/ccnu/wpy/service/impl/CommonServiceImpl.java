@@ -8,6 +8,11 @@ import java.util.List;
 
 public class CommonServiceImpl<T>implements ICommonService<T> {
     private ICommonDao<T> dao= null;
+
+    public ICommonDao<T> getDao(){
+        return dao;
+    }
+
     public CommonServiceImpl(ICommonDao<T>dao){
         this.dao=dao;
 

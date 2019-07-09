@@ -5,7 +5,7 @@ import cn.ccnu.wpy.pojo.Category;
 
 import java.util.List;
 
-public class CategoryDao implements ICommonDao<Category> {
+public class CategoryDaoImpl implements ICommonDao<Category> {
     @Override
     public int add(Category u) throws Exception {
         return 0;
