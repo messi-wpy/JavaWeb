@@ -97,4 +97,21 @@ public class ReceiverDaoImpl implements IReceiverDao {
 
         return receiver;
     }
+
+    public List<Receiver>getUerReceiver(int userId) throws Exception{
+        conn=DBHelper.getConnection();
+        String sql="select *from tb_Receivers where UserID=?";
+        ps=conn.prepareStatement(sql);
+        ps.setInt(1,userId);
+        ResultSet rs=ps.executeQuery();
+        List<Receiver>list=new ArrayList<>();
+        while (rs.next()) {
+            Receiver receiver = new Receiver(rs.getInt("ID"), rs.getString("Name"), rs.getString("Province"),
+                    rs.getString("City"), rs.getString("Country"), rs.getString("Address"), rs.getString("Phone"),
+                    rs.getString("Postcode"), rs.getString("Street"), rs.getInt("UserID"));
+            list.add(receiver);
+        }
+        DBHelper.closeConn(rs,ps,conn);
+        return list;
+    }
 }

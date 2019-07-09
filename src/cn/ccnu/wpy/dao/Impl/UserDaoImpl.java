@@ -133,6 +133,31 @@ public class UserDaoImpl implements ICommonDao<User> {
 		return user;
 	}
 
+	public User test(String name)throws Exception{
+		sql = "select * from tb_users where Name=?";
+		conn = DBHelper.getConnection();
+		User user = null;
+		ResultSet rSet = null;
+		ps = conn.prepareStatement(sql);
+		ps.setString(1, name);
+		rSet = ps.executeQuery();
+		while(rSet.next()){
+			user = new User();
+			user.setId(rSet.getInt("ID"));
+			user.setName(rSet.getString("Name"));
+			user.setPasswordhash(rSet.getString("Passwordhash"));
+			user.setQuestion(rSet.getString("Question"));
+			user.setAnswer(rSet.getString("Answer"));
+			user.setSex(rSet.getBoolean("Sex"));
+			user.setBirth(ConvertUtil.getDataString(rSet.getDate("Birth")));
+			user.setPhone(rSet.getString("Phone"));
+			user.setMail(rSet.getString("Mail"));
+		}
+
+		DBHelper.close(conn, rSet, ps);
+		return user;
+	}
+
 	
 	public boolean isUser(String name, String passwordhash) throws Exception{
 		// TODO Auto-generated method stub

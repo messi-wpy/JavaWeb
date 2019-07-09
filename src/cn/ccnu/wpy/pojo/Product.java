@@ -6,7 +6,25 @@ public class Product {
 	private int categoryid;
 	private int num;
 	private double price;
-	
+	private String  desc;
+	private String imagUrl;
+
+	public String getDesc() {
+		return desc;
+	}
+
+	public void setDesc(String desc) {
+		this.desc = desc;
+	}
+
+	public String getImagUrl() {
+		return imagUrl;
+	}
+
+	public void setImagUrl(String imagUrl) {
+		this.imagUrl = imagUrl;
+	}
+
 	public Product() {
 		// TODO Auto-generated constructor stub
 	}

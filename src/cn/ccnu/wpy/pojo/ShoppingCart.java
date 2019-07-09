@@ -7,6 +7,7 @@ public class ShoppingCart {
     private int userId;
     private int number;
 
+    public ShoppingCart(){}
     public ShoppingCart(int id, int productId, int userId, int number) {
         this.id = id;
         this.productId = productId;

@@ -11,7 +11,10 @@ import java.util.List;
 public class ProductServiceImpl implements ICommonService<Product> {
 
 	private ICommonDao<Product> dao = new ProductDaoImpl();
-	
+
+	public ICommonDao getDao(){
+		return dao;
+	}
 	@Override
 	public int add(Product product) throws Exception {
 		// TODO Auto-generated method stub

@@ -23,7 +23,7 @@ public class ProductDaoImpl implements ICommonDao<Product> {
 	public int add(Product product) throws Exception {
 		// TODO Auto-generated method stub
 //		Product(id,name,catagoryid,num,,price)
-		this.sql = "insert into tb_products values(default,?,?,?,?)";
+		this.sql = "insert into tb_products values(default,?,?,?,?,?,?)";
 		this.conn = DBHelper.getConnection();
 		int i = 0;
 		this.ps = this.conn.prepareStatement(sql);
@@ -32,6 +32,8 @@ public class ProductDaoImpl implements ICommonDao<Product> {
 		this.ps.setInt(2, product.getCategoryid());
 		this.ps.setInt(3, product.getNum());
 		this.ps.setDouble(4, product.getPrice());
+		ps.setString(5,product.getDesc());
+		ps.setString(6,product.getImagUrl());
 		i = this.ps.executeUpdate();
 		DBHelper.close(conn, null, ps);
 		return i;
@@ -44,8 +46,8 @@ public class ProductDaoImpl implements ICommonDao<Product> {
 		this.conn = DBHelper.getConnection();
 		int i = 0;
 		this.ps = this.conn.prepareStatement(sql);
-		
 		this.ps.setInt(1, id);
+
 		i = this.ps.executeUpdate();
 		DBHelper.close(conn, null, null);
 		return i;
@@ -55,7 +57,7 @@ public class ProductDaoImpl implements ICommonDao<Product> {
 	public int update(Product product) throws Exception {
 		// TODO Auto-generated method stub
 //		Product(id,name,catagoryid,num,,price)
-		this.sql = "update tb_products set values(Name=?,CatagoryId=?,Num=?,Price=?) where ID=?";
+		this.sql = "update tb_products set Name=?,CategoryID=?,Num=?,Price=?,descri=?,imagUrl=? where ID=?";
 		this.conn = DBHelper.getConnection();
 		int i = 0;
 		this.ps = this.conn.prepareStatement(sql);
@@ -65,6 +67,8 @@ public class ProductDaoImpl implements ICommonDao<Product> {
 		this.ps.setInt(3, product.getNum());
 		this.ps.setDouble(4, product.getPrice());
 		this.ps.setInt(5, product.getId());
+		ps.setString(6,product.getDesc());
+		ps.setString(7,product.getImagUrl());
 		i = this.ps.executeUpdate();
 		DBHelper.close(conn, null, null);
 		return i;
@@ -85,10 +89,11 @@ public class ProductDaoImpl implements ICommonDao<Product> {
 			product = new Product();
 			product.setId(rSet.getInt("ID"));
 			product.setName(rSet.getString("Name"));
-			product.setCategoryid(rSet.getInt("CatagoryId"));
+			product.setCategoryid(rSet.getInt("CategoryId"));
 			product.setNum(rSet.getInt("Num"));
 			product.setPrice(rSet.getDouble("Price"));
-			
+			product.setDesc(rSet.getString("descri"));
+			product.setImagUrl(rSet.getString("imagUrl"));
 			list.add(product);
 		}
 		DBHelper.close(conn, rSet, ps);
@@ -111,9 +116,11 @@ public class ProductDaoImpl implements ICommonDao<Product> {
 			product = new Product();
 			product.setId(rSet.getInt("ID"));
 			product.setName(rSet.getString("Name"));
-			product.setCategoryid(rSet.getInt("CatagoryId"));
+			product.setCategoryid(rSet.getInt("CategoryId"));
 			product.setNum(rSet.getInt("Num"));
 			product.setPrice(rSet.getDouble("Price"));
+			product.setDesc(rSet.getString("descri"));
+			product.setImagUrl(rSet.getString("imagUrl"));
 		}
 		return product;
 	}
@@ -133,11 +140,37 @@ public class ProductDaoImpl implements ICommonDao<Product> {
 			product = new Product();
 			product.setId(rSet.getInt("ID"));
 			product.setName(rSet.getString("Name"));
-			product.setCategoryid(rSet.getInt("CatagoryId"));
+			product.setCategoryid(rSet.getInt("CategoryId"));
 			product.setNum(rSet.getInt("Num"));
 			product.setPrice(rSet.getDouble("Price"));
+			product.setDesc(rSet.getString("descri"));
+			product.setImagUrl(rSet.getString("imagUrl"));
 		}
 		return product;
+	}
+
+	public List<Product> getCategoryProduct(int category) throws  Exception{
+		sql="select *from tb_products where CategoryID=?";
+		conn=DBHelper.getConnection();
+		ps=conn.prepareStatement(sql);
+		ps.setInt(1,category);
+		ResultSet rSet=ps.executeQuery();
+		List<Product>list=new ArrayList<>();
+		while(rSet.next()){
+			Product product = new Product();
+			product.setId(rSet.getInt("ID"));
+			product.setName(rSet.getString("Name"));
+			product.setCategoryid(rSet.getInt("CategoryId"));
+			product.setNum(rSet.getInt("Num"));
+			product.setPrice(rSet.getDouble("Price"));
+			product.setDesc(rSet.getString("descri"));
+			product.setImagUrl(rSet.getString("imagUrl"));
+			list.add(product);
+		}
+
+		DBHelper.closeConn(rSet,ps,conn);
+		return list;
+
 	}
 
 }
