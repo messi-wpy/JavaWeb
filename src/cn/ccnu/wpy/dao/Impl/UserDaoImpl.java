@@ -2,8 +2,10 @@ package cn.ccnu.wpy.dao.Impl;
 
 import cn.ccnu.wpy.dao.ICommonDao;
 import cn.ccnu.wpy.pojo.User;
+import cn.ccnu.wpy.util.ConvertUtil;
 import cn.ccnu.wpy.util.DBHelper;
 
+import java.sql.Date;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
@@ -29,7 +31,7 @@ public class UserDaoImpl implements ICommonDao<User> {
 			ps.setString(4, user.getQuestion());
 			ps.setString(5, user.getAnswer());
 			ps.setBoolean(6, user.isSex());
-			ps.setDate(7, user.getBirth());
+			ps.setDate(7, Date.valueOf(user.getBirth()));
 			ps.setString(8, user.getPhone());
 			ps.setString(9, user.getMail());
 			i = ps.executeUpdate();
@@ -68,7 +70,7 @@ public class UserDaoImpl implements ICommonDao<User> {
 			ps.setString(3, user.getQuestion());
 			ps.setString(4, user.getAnswer());
 			ps.setBoolean(5, user.isSex());
-			ps.setDate(6, user.getBirth());
+			ps.setDate(6, Date.valueOf(user.getBirth()));
 			ps.setString(7, user.getPhone());
 			ps.setString(8, user.getMail());
 			i = ps.executeUpdate();
@@ -95,7 +97,7 @@ public class UserDaoImpl implements ICommonDao<User> {
 				user.setQuestion(rSet.getString("Question"));
 				user.setAnswer(rSet.getString("Answer"));
 				user.setSex(rSet.getBoolean("Sex"));
-				user.setBirth(rSet.getDate("Birth"));
+				user.setBirth(ConvertUtil.getDataString(rSet.getDate("Birth")));
 				user.setPhone(rSet.getString("Phone"));
 				user.setMail(rSet.getString("Mail"));
 				list.add(user);
@@ -122,7 +124,7 @@ public class UserDaoImpl implements ICommonDao<User> {
 				user.setQuestion(rSet.getString("Question"));
 				user.setAnswer(rSet.getString("Answer"));
 				user.setSex(rSet.getBoolean("Sex"));
-				user.setBirth(rSet.getDate("Birth"));
+				user.setBirth(ConvertUtil.getDataString(rSet.getDate("Birth")));
 				user.setPhone(rSet.getString("Phone"));
 				user.setMail(rSet.getString("Mail"));
 			}

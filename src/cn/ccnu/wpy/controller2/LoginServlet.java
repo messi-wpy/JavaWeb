@@ -24,8 +24,13 @@ public class LoginServlet extends HttpServlet {
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String action=request.getParameter("action");
-        JsonObject jsonObject= new JsonParser().parse(request.getReader()).getAsJsonObject();
         Gson gson = new Gson();
+        response.setCharacterEncoding("UTF-8");
+        response.setContentType("application/json");
+        request.setCharacterEncoding("utf-8");
+        ResponseBody<User> body=new ResponseBody<>();
+
+
 
         if (action!=null&&action.equals("registed")){
             User user=gson.fromJson(request.getReader(),User.class);
@@ -34,20 +39,19 @@ public class LoginServlet extends HttpServlet {
             } catch (Exception e) {
                 e.printStackTrace();
                 response.setStatus(400);
-                ResponseBody body=new ResponseBody();
                 body.setCode(400);
                 body.setMsg("错误");
                 response.getWriter().println(gson.toJson(body));
                 return;
             }
             response.setStatus(200);
-            ResponseBody body=new ResponseBody();
             body.setCode(200);
             body.setMsg("注册成功!");
             response.getWriter().println(gson.toJson(body));
             return;
 
         }
+        JsonObject jsonObject= new JsonParser().parse(request.getReader()).getAsJsonObject();
 
         int account=jsonObject.get("account").getAsInt();
         String password=jsonObject.get("password").getAsString();
@@ -58,22 +62,21 @@ public class LoginServlet extends HttpServlet {
             e.printStackTrace();
         }
 
-        response.setCharacterEncoding("UTF-8");
-        response.setContentType("application/json");
+
         if (user==null){
             response.setStatus(400);
-            ResponseBody body=new ResponseBody();
             body.setCode(400);
             body.setMsg("用户名不存在");
             response.getWriter().println(gson.toJson(body));
         }else if (!password.equals(user.getPasswordhash())){
             response.setStatus(400);
-            ResponseBody body=new ResponseBody();
             body.setCode(400);
             body.setMsg("密码错误");
             response.getWriter().println(gson.toJson(body));
         }else {
-            response.getWriter().println(gson.toJson(user));
+            body.setCode(200);
+            body.setBody(user);
+            response.getWriter().println(gson.toJson(body));
         }
 
 

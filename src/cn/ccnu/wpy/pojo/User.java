@@ -9,7 +9,7 @@ public class User {
 	private String question;
 	private String answer;
 	private boolean sex;
-	private Date birth;
+	private String birth;
 	private String phone;
 	private String mail;
 	
@@ -17,7 +17,7 @@ public class User {
 		// TODO Auto-generated constructor stub
 	}
 
-	public User(int id, String name, String passwordhash, String question, String answer, boolean sex, Date birth,
+	public User(int id, String name, String passwordhash, String question, String answer, boolean sex, String birth,
 			String phone, String mail) {
 		super();
 		this.id = id;
@@ -79,11 +79,11 @@ public class User {
 		this.sex = sex;
 	}
 
-	public Date getBirth() {
+	public String getBirth() {
 		return birth;
 	}
 
-	public void setBirth(Date birth) {
+	public void setBirth(String birth) {
 		this.birth = birth;
 	}
 

@@ -1,10 +1,18 @@
 package cn.ccnu.wpy.pojo;
 
-public class ResponseBody {
+public class ResponseBody <T>{
 
     int code;
     String msg;
-    String json;
+    T body;
+
+    public T getBody() {
+        return body;
+    }
+
+    public void setBody(T body) {
+        this.body = body;
+    }
 
     public int getCode() {
         return code;
@@ -22,11 +30,5 @@ public class ResponseBody {
         this.msg = msg;
     }
 
-    public String getJson() {
-        return json;
-    }
 
-    public void setJson(String json) {
-        this.json = json;
-    }
 }
