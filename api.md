@@ -53,7 +53,7 @@ Response：
 ```
 
 ### 展示所有商品
-http://localhost:8080/ProductServlet?action=showAll  get
+http://106.14.199.222:8080/ProductServlet?action=showAll  get
 response:
 ```
 [
@@ -88,7 +88,7 @@ response:
 
 ```
 ### 按类别查找商品
-http://localhost:8080/product?categoryId=1  get
+http://106.14.199.222:8080/product?categoryId=1  get
 response
 ```
 [
@@ -123,7 +123,7 @@ response
 
 ```
 ### 某个商品具体信息
-http://localhost:8080/ProductServlet?action=seek&ID=5   get
+http://106.14.199.222:8080/ProductServlet?action=seek&ID=5   get
 action=seek   ID=
 response:
 ```
@@ -138,7 +138,7 @@ response:
 }
 ```
 ### 添加商品
-http://localhost:8080/ProductServlet?action=insert post
+http://106.14.199.222:8080/ProductServlet?action=insert post
 request:
 ```
  {
@@ -157,7 +157,7 @@ response:
 ```
 
 ### 修改商品
-http://localhost:8080/ProductServlet?action=update  get
+http://106.14.199.222:8080/ProductServlet?action=update  get
 request:
 ```json
 {
@@ -175,7 +175,7 @@ response:
 "更新商品成功！"
 ```
 ### 返回地址
-http://localhost:8080/getReceiver?userId=10
+http://106.14.199.222:8080/getReceiver?userId=10
 request；userId
 ```json
 {
@@ -210,7 +210,7 @@ request；userId
 }
 ```
 ### 生成购物车
-http://localhost:8080/shop?action=getShopCar&userId=1
+http://106.14.199.222:8080/shop?action=getShopCar&userId=1
 request userId
 
 response:
@@ -246,7 +246,7 @@ response:
 }
 ```
 ### 添加到购物车
-http://localhost:8080/shop?action=add
+http://106.14.199.222:8080/shop?action=add
 ```json
 {
 	"id"=23,(随便给一个id)
