@@ -54,10 +54,11 @@ public class ShopServlet extends HttpServlet {
     public void delete(HttpServletRequest request, HttpServletResponse response){
 
         try {
-            shoppingDao.delete(Integer.parseInt(request.getParameter("id")));
+            shoppingDao.delete(Integer.parseInt(request.getParameter("pId")),Integer.parseInt(request.getParameter("uId")));
             response.getWriter().println("删除成功");
         }catch (Exception e){
             e.printStackTrace();
+            response.setStatus(400);
         }
     }
 

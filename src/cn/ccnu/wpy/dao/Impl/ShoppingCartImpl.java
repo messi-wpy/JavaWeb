@@ -19,6 +19,19 @@ public class ShoppingCartImpl implements ICommonDao<ShoppingCart> {
     @Override
     public int add(ShoppingCart u) throws Exception {
         conn= DBHelper.getConnection();
+        ShoppingCart find=hasAdd(u);
+        if (find!=null){
+            int num=find.getNumber()+u.getNumber();
+            sql="update tb_ShoppingCarts set Number=? where ProductID=? AND UserID=?";
+            ps=conn.prepareStatement(sql);
+            ps.setInt(1,num);
+            ps.setInt(2,u.getProductId());
+            ps.setInt(3,u.getUserId());
+            int row=ps.executeUpdate();
+            DBHelper.closeConn(null,ps,conn);
+
+            return row;
+        }
         sql="insert into tb_ShoppingCarts values(default ,?,?,?)";
         ps=conn.prepareStatement(sql);
         ps.setInt(1,u.getProductId());
@@ -27,6 +40,22 @@ public class ShoppingCartImpl implements ICommonDao<ShoppingCart> {
         int row=ps.executeUpdate();
         DBHelper.closeConn(null,ps,conn);
         return row;
+    }
+
+    public ShoppingCart hasAdd(ShoppingCart u) throws Exception{
+        conn=DBHelper.getConnection();
+        sql="select *from tb_ShoppingCarts where ProductID=? and UserID=? ";
+        ps=conn.prepareStatement(sql);
+        ps.setInt(1,u.getProductId());
+        ps.setInt(2,u.getUserId());
+        ResultSet rs= ps.executeQuery();
+        ShoppingCart res=null;
+        if (rs.next()) {
+            res=new ShoppingCart();
+            res.setNumber(rs.getInt("Number"));
+        }
+        return res;
+
     }
 
     @Override
@@ -39,6 +68,20 @@ public class ShoppingCartImpl implements ICommonDao<ShoppingCart> {
         DBHelper.closeConn(null,ps,conn);
 
         return row;
+    }
+
+    public int delete(int pId,int uId)throws  Exception{
+        sql="delete from tb_ShoppingCarts  where ProductID=? AND UserID=?";
+        conn=DBHelper.getConnection();
+        ps=conn.prepareStatement(sql);
+        ps.setInt(1,pId);
+        ps.setInt(2,uId);
+        int row=ps.executeUpdate();
+        DBHelper.closeConn(null,ps,conn);
+        return row;
+
+
+
     }
 
     public List<Product> getShopCart(int userId)throws Exception{
@@ -56,6 +99,7 @@ public class ShoppingCartImpl implements ICommonDao<ShoppingCart> {
             product.setNum(rs.getInt("Number"));
             product.setDesc(rs.getString("descri"));
             product.setImagUrl(rs.getString("imagUrl"));
+            product.setPrice(rs.getFloat("Price"));
             list.add(product);
 
         }
