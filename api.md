@@ -253,10 +253,10 @@ http://106.14.199.222:8080/shop?action=add
 	"productId"=2,
 	"userId"=3,
 	"number"=12
-	
 
 }
 ```
 ### 删除商品
 
+http://106.14.199.222:8080/shop?action=delete&pId=1&uId=2
 
