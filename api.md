@@ -1,5 +1,5 @@
 ### 登录
-http://localhost:8080/login    post
+http://106.14.199.222:8080/login    post
 request：
 ```
 {
