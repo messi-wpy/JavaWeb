@@ -279,7 +279,7 @@ http://106.14.199.222:8080/shop?action=add
     "number":12
 }
 ```
-### 删除商品
+### 删除购物车商品
 
 http://106.14.199.222:8080/shop?action=delete&pId=1&uId=2
 
@@ -359,4 +359,15 @@ http://106.14.199.222:8080/order
         "sum": 23
     }
 ]
+```
+
+### 更新购物车
+http://106.14.199.222:8080/shop?action=update
+```json
+{
+	"productId":2,
+	"userId":3,
+	"number":12
+
+}
 ```
