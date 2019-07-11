@@ -42,6 +42,7 @@ public class ShoppingCartImpl implements ICommonDao<ShoppingCart> {
         return row;
     }
 
+
     public ShoppingCart hasAdd(ShoppingCart u) throws Exception{
         conn=DBHelper.getConnection();
         sql="select *from tb_ShoppingCarts where ProductID=? and UserID=? ";
@@ -110,6 +111,13 @@ public class ShoppingCartImpl implements ICommonDao<ShoppingCart> {
 
     @Override
     public int update(ShoppingCart u) throws Exception {
+        conn=DBHelper.getConnection();
+        sql="update tb_ShoppingCarts set Number=? where ProductID=? AND UserID=?";
+        ps=conn.prepareStatement(sql);
+        ps.setInt(1,u.getNumber());
+        ps.setInt(2,u.getProductId());
+        ps.setInt(3,u.getUserId());
+        DBHelper.closeConn(null,ps,conn);
         return 0;
     }
 

@@ -13,11 +13,23 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.List;
 
-@WebServlet(value = "/getReceiver",name = "Receiver2Servlet")
+@WebServlet(value = "/Receiver",name = "Receiver2Servlet")
 public class Receiver2Servlet extends HttpServlet {
     ReceiverDaoImpl receiverDao=new ReceiverDaoImpl();
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
+        response.setContentType("text/json;Charset=UTF-8");
+        response.setCharacterEncoding("UTF-8");
+        request.setCharacterEncoding("UTF-8");
+        Receiver receiver=ConvertUtil.gson.fromJson(request.getReader(),Receiver.class);
+        try {
+            receiverDao.add(receiver);
+            response.getWriter().println("添加成功");
+        } catch (Exception e) {
+            e.printStackTrace();
+            response.setStatus(400);
+            response.getWriter().println("error");
+        }
+        response.getWriter().close();
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -43,6 +55,7 @@ public class Receiver2Servlet extends HttpServlet {
             response.getWriter().println(ConvertUtil.gson.toJson(body));
 
         }
+        response.getWriter().close();
 
     }
 }

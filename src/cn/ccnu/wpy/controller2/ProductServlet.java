@@ -62,10 +62,9 @@ public class ProductServlet extends HttpServlet {
 			this.showAll(request, response);
 		}else if("seek".equals(action)){
 			this.seek(request, response);
-		}else{
-//			request.setAttribute("action_msg", "action wrong!");
 		}
 	}
+
 
 	protected void add(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
 //		Product(id,name,catagoryid,num,,price)

@@ -1,7 +1,7 @@
 ### 登录
 http://106.14.199.222:8080/login    post
 request：
-```
+```json
 {
 "account":1,
 "password":"EmmaPassword"
@@ -10,7 +10,7 @@ request：
 
 ```
 response:
-```
+```json
 {
     "code": 200,
     "msg": "登录成功",
@@ -31,7 +31,7 @@ response:
 http://106.14.199.222:8080/login?action=registed    post
 
 request：
-```
+```json
 {
     "id": 111,
     "name": "王鹏宇",
@@ -45,7 +45,7 @@ request：
 }
 ```
 Response：
-```
+```json
 {
     "code": 200,
     "msg": "注册成功!"
@@ -55,7 +55,7 @@ Response：
 ### 展示所有商品
 http://106.14.199.222:8080/ProductServlet?action=showAll  get
 response:
-```
+```json
 [
     {
         "id": 1,
@@ -90,7 +90,7 @@ response:
 ### 按类别查找商品
 http://106.14.199.222:8080/product?categoryId=1  get
 response
-```
+```json
 [
     {
         "id": 1,
@@ -140,7 +140,7 @@ response:
 ### 添加商品
 http://106.14.199.222:8080/ProductServlet?action=insert post
 request:
-```
+```json
  {
         "id": 19,
         "name": "华为p10",
@@ -155,6 +155,10 @@ response:
 ```json
 "增加商品成功！"
 ```
+
+### 删除商品
+http://106.14.199.222:8080/ProductServlet?action=delete&ID=  get
+- request:ID  商品id
 
 ### 修改商品
 http://106.14.199.222:8080/ProductServlet?action=update  get
@@ -174,9 +178,29 @@ response:
 ```json
 "更新商品成功！"
 ```
+### 添加地址
+http://106.14.199.222:8080/Receiver
+- POST
+- request:
+```json
+ {
+            "name": "messi",
+            "province": "HuBei",
+            "city": "WuHan",
+            "country": "HongShan",
+            "address": "CCNU LuoYu Road",
+            "phone": "17362995006",
+            "postcode": "430000",
+            "street": "LuoNan",
+            "userId": 10
+   }
+
+```
+
 ### 返回地址
-http://106.14.199.222:8080/getReceiver?userId=10
-request；userId
+http://106.14.199.222:8080/Receiver?userId=10  
+- GET
+- request；userId
 ```json
 {
     "code": 0,
@@ -249,14 +273,90 @@ response:
 http://106.14.199.222:8080/shop?action=add
 ```json
 {
-	"id"=23,(随便给一个id)
-	"productId"=2,
-	"userId"=3,
-	"number"=12
-
+    "id":23,
+    "productId":2,
+    "userId":3,
+    "number":12
 }
 ```
 ### 删除商品
 
 http://106.14.199.222:8080/shop?action=delete&pId=1&uId=2
 
+### 添加订单:
+http://106.14.199.222:8080/order   
+- post
+- request:
+```json
+{
+   "productId":[2,3,3,4],
+   "nums":[2,1,2,1],
+   "sumPrice":24.5,
+   "userId":2000,
+   "addressId":2, 
+   "orderId":2
+}
+```
+### 获取所有订单:
+http://106.14.199.222:8080/order   
+- get
+- response:
+```json
+[
+    {
+        "receiver": {
+            "id": 1,
+            "name": "刘德华",
+            "province": "湖北",
+            "city": "武汉",
+            "country": "中国",
+            "address": "华中师范大学",
+            "phone": "17362992000",
+            "postcode": "430000",
+            "street": "珞南街道",
+            "userId": 2000
+        },
+        "products": [
+            {
+                "id": 1,
+                "name": "千味岛早餐面包",
+                "categoryid": 4,
+                "num": 1224,
+                "price": 39.9,
+                "desc": "营养软长崎蛋糕原味手工纯蛋糕小面包整箱零食960g",
+                "imagUrl": "https://img.alicdn.com/imgextra/i2/2200561834814/O1CN01pBrnIm1lQrC2W6piS_!!2200561834814.jpg_430x430q90.jpg"
+            },
+            {
+                "id": 1,
+                "name": "千味岛早餐面包",
+                "categoryid": 4,
+                "num": 1224,
+                "price": 39.9,
+                "desc": "营养软长崎蛋糕原味手工纯蛋糕小面包整箱零食960g",
+                "imagUrl": "https://img.alicdn.com/imgextra/i2/2200561834814/O1CN01pBrnIm1lQrC2W6piS_!!2200561834814.jpg_430x430q90.jpg"
+            },
+            {
+                "id": 2,
+                "name": "学生坐垫",
+                "categoryid": 4,
+                "num": 735,
+                "price": 27.8,
+                "desc": "卡通记忆棉坐垫学生教室椅子凳子垫子可爱宿舍椅垫夏季防滑屁股垫 ",
+                "imagUrl": "https://img.alicdn.com/imgextra/i2/487740454/TB2GU_adOgSXeFjy0FcXXahAXXa_!!487740454.jpg_430x430q90.jpg"
+            }
+        ],
+        "user": {
+            "id": 2000,
+            "name": "刘德华",
+            "passwordhash": "123456",
+            "question": "我的名字是什么",
+            "answer": "刘德华",
+            "sex": true,
+            "birth": "1999-02-05",
+            "phone": "17362992000",
+            "mail": "2000@qq.com"
+        },
+        "sum": 23
+    }
+]
+```

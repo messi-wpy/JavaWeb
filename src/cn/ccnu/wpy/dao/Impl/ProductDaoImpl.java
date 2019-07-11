@@ -66,11 +66,12 @@ public class ProductDaoImpl implements ICommonDao<Product> {
 		this.ps.setInt(2, product.getCategoryid());
 		this.ps.setInt(3, product.getNum());
 		this.ps.setDouble(4, product.getPrice());
-		this.ps.setInt(5, product.getId());
-		ps.setString(6,product.getDesc());
-		ps.setString(7,product.getImagUrl());
+		ps.setString(5,product.getDesc());
+		ps.setString(6,product.getImagUrl());
+		this.ps.setInt(7, product.getId());
+
 		i = this.ps.executeUpdate();
-		DBHelper.close(conn, null, null);
+		DBHelper.close(conn, null, ps);
 		return i;
 	}
 

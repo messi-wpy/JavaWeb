@@ -29,6 +29,26 @@ public class ShopServlet extends HttpServlet {
             delete(request,response);
         }else if (action.equals("getShopCar"))
             getShopCar(request,response);
+        else if (action.equals("update"))
+            update(request,response);
+        response.getWriter().close();
+    }
+
+    public void update(HttpServletRequest request, HttpServletResponse response)throws ServletException, IOException{
+        int row=0;
+        ShoppingCart cart = ConvertUtil.gson.fromJson(request.getReader(), ShoppingCart.class);
+        ResponseBody<ShoppingCart>body=new ResponseBody<>();
+        try {
+            row=shoppingDao.update(cart);
+            body.setCode(200);
+            body.setMsg("更新成功");
+            response.getWriter().println(ConvertUtil.gson.toJson(body));
+        }catch (Exception e){
+            e.printStackTrace();
+            body.setCode(400);
+            body.setMsg("更新失败");
+            response.getWriter().println(ConvertUtil.gson.toJson(body));
+        }
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

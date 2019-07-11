@@ -21,19 +21,18 @@ public class UserDaoImpl implements ICommonDao<User> {
 	public int add(User user) throws Exception {
 		// TODO Auto-generated method stub
 //		tb_users(ID,Name,PasswordHash,Question,Answer,Sex,Birth,Phone,Mail)
-		sql = "insert into tb_users values(?,?,?,?,?,?,?,?,?)";
+		sql = "insert into tb_users values(default ,?,?,?,?,?,?,?,?)";
 		conn = DBHelper.getConnection();
 		int i =0;
 			ps = conn.prepareStatement(sql);
-			ps.setInt(1,user.getId());
-			ps.setString(2,user.getName());
-			ps.setString(3, user.getPasswordhash());
-			ps.setString(4, user.getQuestion());
-			ps.setString(5, user.getAnswer());
-			ps.setBoolean(6, user.isSex());
-			ps.setDate(7, Date.valueOf(user.getBirth()));
-			ps.setString(8, user.getPhone());
-			ps.setString(9, user.getMail());
+			ps.setString(1,user.getName());
+			ps.setString(2, user.getPasswordhash());
+			ps.setString(3, user.getQuestion());
+			ps.setString(4, user.getAnswer());
+			ps.setBoolean(5, user.isSex());
+			ps.setDate(6, Date.valueOf(user.getBirth()));
+			ps.setString(7, user.getPhone());
+			ps.setString(8, user.getMail());
 			i = ps.executeUpdate();
 		DBHelper.close(conn, null, ps);
 		return i;
