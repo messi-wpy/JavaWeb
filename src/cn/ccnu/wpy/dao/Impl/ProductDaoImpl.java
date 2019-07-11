@@ -6,7 +6,9 @@ import cn.ccnu.wpy.util.DBHelper;
 
 import java.sql.ResultSet;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 
 public class ProductDaoImpl implements ICommonDao<Product> {
@@ -14,9 +16,21 @@ public class ProductDaoImpl implements ICommonDao<Product> {
 	private java.sql.Connection conn = null;
 	private java.sql.PreparedStatement ps = null;
 	private String sql = null;
-	
+	private Map<Integer,String>hashmap;
 	public ProductDaoImpl() {
 		// TODO Auto-generated constructor stub
+		hashmap=new HashMap<>();
+		//category:['','家具器具','电子产品','户外必备','当下最热','海外放心','出行穿搭','点心零食','图书文娱','国际名牌']
+		hashmap.put(1,"家具器具");
+		hashmap.put(2,"电子产品");
+		hashmap.put(3,"户外用品");
+		hashmap.put(4,"当下最热");
+		hashmap.put(5,"海外放心");
+		hashmap.put(6,"出行穿搭");
+		hashmap.put(7,"点心零食");
+		hashmap.put(8,"图书文娱");
+		hashmap.put(9,"国际名牌");
+
 	}
 	
 	@Override
@@ -95,6 +109,7 @@ public class ProductDaoImpl implements ICommonDao<Product> {
 			product.setPrice(rSet.getDouble("Price"));
 			product.setDesc(rSet.getString("descri"));
 			product.setImagUrl(rSet.getString("imagUrl"));
+			product.setCategoryName(hashmap.get(product.getCategoryid()));
 			list.add(product);
 		}
 		DBHelper.close(conn, rSet, ps);

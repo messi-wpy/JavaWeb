@@ -64,7 +64,8 @@ response:
         "num": 1,
         "price": 2,
         "desc": "asdasdasd",
-        "imagUrl": "sadsad"
+        "imagUrl": "sadsad",
+        "categoryName": "当下最热"
     },
     {
         "id": 3,
@@ -73,7 +74,8 @@ response:
         "num": 1000,
         "price": 3,
         "desc": "asdasdasd",
-        "imagUrl": "sadsad"
+        "imagUrl": "sadsad",
+        "categoryName": "当下最热"
     },
     {
         "id": 4,
@@ -82,7 +84,8 @@ response:
         "num": 5000,
         "price": 4,
         "desc": "asdasdasd",
-        "imagUrl": "sadsad"
+        "imagUrl": "sadsad",
+        "categoryName": "当下最热"
     }
 ]
 
@@ -368,6 +371,6 @@ http://106.14.199.222:8080/shop?action=update
 	"productId":2,
 	"userId":3,
 	"number":12
-
+  
 }
 ```

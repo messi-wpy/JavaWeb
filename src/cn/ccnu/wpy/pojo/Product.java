@@ -8,6 +8,7 @@ public class Product {
 	private double price;
 	private String  desc;
 	private String imagUrl;
+	private String categoryName;
 
 	public String getDesc() {
 		return desc;
@@ -77,5 +78,12 @@ public class Product {
 	public void setPrice(double price) {
 		this.price = price;
 	}
-	
+
+	public String getCategoryName() {
+		return categoryName;
+	}
+
+	public void setCategoryName(String categoryName) {
+		this.categoryName = categoryName;
+	}
 }
