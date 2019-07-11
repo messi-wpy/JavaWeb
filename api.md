@@ -256,7 +256,19 @@ http://106.14.199.222:8080/shop?action=add
 
 }
 ```
-### 删除商品
+### 删除购物车商品
 
 http://106.14.199.222:8080/shop?action=delete&pId=1&uId=2
 
+
+### 更新购物车
+http://106.14.199.222:8080/shop?action=update
+```json
+{
+	"id"=23,(随便给一个id)
+	"productId"=2,
+	"userId"=3,
+	"number"=12
+
+}
+```
