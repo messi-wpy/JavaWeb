@@ -374,3 +374,58 @@ http://106.14.199.222:8080/shop?action=update
   
 }
 ```
+### 获取某人所有订单
+http://localhost:8080/order?userId=
+- GET
+- request: userId
+- response:
+```json
+[
+    {
+        "receiver": {
+            "id": 2,
+            "name": "刘德华",
+            "province": "浙江",
+            "city": "杭州",
+            "country": "中国",
+            "address": "浙江传媒学院",
+            "phone": "17362992000",
+            "postcode": "310000",
+            "street": "学源街道",
+            "userId": 2000
+        },
+        "products": [
+            {
+                "id": 3,
+                "name": "澳洲牛排",
+                "categoryid": 4,
+                "num": 2,
+                "price": 198,
+                "desc": "耶森船长澳洲整切牛排套餐团购新鲜菲力黑椒儿童西冷厚切家用 ",
+                "imagUrl": "https://img.alicdn.com/imgextra/https://img.alicdn.com/imgextra/i3/3223684661/O1CN01n9KiAU1kImYaFscPt_!!3223684661.jpg_430x430q90.jpg"
+            },
+            {
+                "id": 4,
+                "name": "台式电脑",
+                "categoryid": 4,
+                "num": 1,
+                "price": 5488,
+                "desc": "i5/i7高配吃鸡游戏电脑主机组装台式电脑整机全套送22至32英寸曲面显示器主播办公家用设计台式主机diy兼容机 ",
+                "imagUrl": "https://img.alicdn.com/imgextra/https://img.alicdn.com/imgextra/i4/766439547/O1CN01ARHMtg2KOZkGTo7tp_!!766439547.jpg_430x430q90.jpg"
+            }
+        ],
+        "user": {
+            "id": 2002,
+            "name": "刘亦菲",
+            "passwordhash": "123456",
+            "question": "我的名字是什么",
+            "answer": "刘亦菲",
+            "sex": false,
+            "birth": "1999-04-07",
+            "phone": "17362992002",
+            "mail": "2002@qq.com"
+        },
+        "sum": 24.5
+    }
+]
+```

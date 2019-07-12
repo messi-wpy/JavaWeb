@@ -95,6 +95,8 @@ public class ReceiverDaoImpl implements IReceiverDao {
                 rs.getString("City"),rs.getString("Country"),rs.getString("Address"),rs.getString("Phone"),
                 rs.getString("Postcode"),rs.getString("Street"),rs.getInt("UserID"));
 
+        DBHelper.closeConn(rs,ps,conn);
+
         return receiver;
     }
 

@@ -61,7 +61,6 @@ public class OrderServlet extends HttpServlet {
         Order order=new Order();
         order.setAddressId(jsonObject.get("addressId").getAsInt());
         order.setSumPrice(jsonObject.get("sumPrice").getAsDouble());
-        order.setOrderId(jsonObject.get("orderId").getAsInt());
         order.setUserId(jsonObject.get("userId").getAsInt());
         try {
             orderDao.add(products,nums,order);
@@ -76,8 +75,14 @@ public class OrderServlet extends HttpServlet {
     public void getOrder(HttpServletRequest request, HttpServletResponse response)throws ServletException, IOException{
 
         Map<Integer, List<Order>>map=null;
+        String p=request.getParameter("userId");
         try {
-            map=orderDao.getAll();
+
+            if (p!=null) {
+                int userId = Integer.parseInt(p);
+                map=orderDao.getOne(userId);
+            }else
+                map=orderDao.getAll();
 
         List<OrderBody>res=new ArrayList<>();
         if (map==null){

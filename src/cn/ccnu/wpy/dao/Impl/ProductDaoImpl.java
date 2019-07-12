@@ -138,6 +138,8 @@ public class ProductDaoImpl implements ICommonDao<Product> {
 			product.setDesc(rSet.getString("descri"));
 			product.setImagUrl(rSet.getString("imagUrl"));
 		}
+		DBHelper.closeConn(rSet,ps,conn);
+
 		return product;
 	}
 
@@ -162,6 +164,8 @@ public class ProductDaoImpl implements ICommonDao<Product> {
 			product.setDesc(rSet.getString("descri"));
 			product.setImagUrl(rSet.getString("imagUrl"));
 		}
+		DBHelper.closeConn(rSet,ps,conn);
+
 		return product;
 	}
 

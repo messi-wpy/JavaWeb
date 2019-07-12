@@ -55,6 +55,8 @@ public class ShoppingCartImpl implements ICommonDao<ShoppingCart> {
             res=new ShoppingCart();
             res.setNumber(rs.getInt("Number"));
         }
+        DBHelper.closeConn(null,ps,conn);
+
         return res;
 
     }
