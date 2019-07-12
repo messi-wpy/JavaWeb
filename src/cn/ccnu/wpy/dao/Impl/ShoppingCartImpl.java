@@ -117,6 +117,7 @@ public class ShoppingCartImpl implements ICommonDao<ShoppingCart> {
         ps.setInt(1,u.getNumber());
         ps.setInt(2,u.getProductId());
         ps.setInt(3,u.getUserId());
+        ps.executeUpdate();
         DBHelper.closeConn(null,ps,conn);
         return 0;
     }
